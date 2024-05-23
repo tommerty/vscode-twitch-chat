@@ -31,7 +31,7 @@ function activate(context) {
         TwitchChatPanel_1.TwitchChatPanel.createOrShow();
     }));
     vscode.workspace.onDidChangeConfiguration(e => {
-        if (e.affectsConfiguration('twitchChatExtension.channelName')) {
+        if (e.affectsConfiguration('twitchChatExtension.twitchUsername')) {
             if (TwitchChatPanel_1.TwitchChatPanel.currentPanel) {
                 TwitchChatPanel_1.TwitchChatPanel.currentPanel.dispose();
                 TwitchChatPanel_1.TwitchChatPanel.createOrShow();

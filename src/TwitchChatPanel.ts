@@ -37,11 +37,11 @@ export class TwitchChatPanel {
   }
 
   private _setupTmiClient() {
-    const channelName = vscode.workspace.getConfiguration('twitchChatExtension').get('channelName', '');
+    const twitchUsername = vscode.workspace.getConfiguration('twitchChatExtension').get('twitchUsername', '');
   
-    if (channelName) {
+    if (twitchUsername) {
       const client = new tmi.Client({
-        channels: [channelName]
+        channels: [twitchUsername]
       });
   
       client.connect();
@@ -50,7 +50,13 @@ export class TwitchChatPanel {
         this._panel.webview.postMessage({ type: 'chatMessage', message: { id: tags.id, user: tags.username, message } });
       });
     } else {
-      vscode.window.showErrorMessage('Please enter a Twitch channel name in the extension settings.');
+      const openSettingsButton = 'Configure';
+      vscode.window.showErrorMessage('No channel set! Head over to the settings and type in the Twitch username', openSettingsButton)
+        .then((selection) => {
+          if (selection === openSettingsButton) {
+            vscode.commands.executeCommand('workbench.action.openSettings', 'twitchChatExtension.twitchUsername');
+          }
+        });
     }
   }
 
@@ -58,19 +64,26 @@ export class TwitchChatPanel {
     return `<!DOCTYPE html>
             <html lang="en">
             <head>
-            <script src="https://cdn.tailwindcss.com"></script>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Twitch Chat</title>
                 <style>
-                  body {
+                  html, body {
+                    height: 100%;
                     margin: 0;
-                    padding: 10px;
+                    padding: 0;
+                  }
+                  body {
+                    display: flex;
+                    flex-direction: column;
                     font-family: Arial, sans-serif;
                   }
+                  #chat {
+                    flex: 1;
+                    overflow-y: scroll;
+                  }
                   .message {
-                    padding: 2px;
-                    background-color: transparent;
+                    padding: 5px;
                   }
                   .username {
                     font-weight: bold;
@@ -82,7 +95,7 @@ export class TwitchChatPanel {
                 <script>
                   const vscode = acquireVsCodeApi();
                   const chatElement = document.getElementById('chat');
-
+  
                   window.addEventListener('message', event => {
                     const message = event.data;
                     switch (message.type) {
@@ -91,6 +104,7 @@ export class TwitchChatPanel {
                         messageElement.className = 'message';
                         messageElement.innerHTML = \`<span class="username">\${message.message.user}: </span>\${message.message.message}\`;
                         chatElement.appendChild(messageElement);
+                        chatElement.scrollTop = chatElement.scrollHeight;
                         break;
                     }
                   });
@@ -98,6 +112,8 @@ export class TwitchChatPanel {
             </body>
             </html>`;
   }
+  
+  
 
   public dispose() {
     TwitchChatPanel.currentPanel = undefined;

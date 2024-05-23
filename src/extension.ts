@@ -9,7 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
   
     vscode.workspace.onDidChangeConfiguration(e => {
-      if (e.affectsConfiguration('twitchChatExtension.channelName')) {
+      if (e.affectsConfiguration('twitchChatExtension.twitchUsername')) {
         if (TwitchChatPanel.currentPanel) {
           TwitchChatPanel.currentPanel.dispose();
           TwitchChatPanel.createOrShow();

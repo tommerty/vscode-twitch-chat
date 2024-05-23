@@ -19,12 +19,13 @@
       }
     ],
     "configuration": {
-      "title": "Twitch Chat Extension",
+      "title": "Twitch Chat",
       "properties": {
-        "twitchChatExtension.channelName": {
+        "twitchChatExtension.twitchUsername": {
           "type": "string",
           "default": "",
-          "description": "Enter the Twitch channel name to connect to."
+          "description": "Enter the Twitch username of the channel you want to join."
+                    
         }
       }
     }
