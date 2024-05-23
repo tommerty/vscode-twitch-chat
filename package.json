@@ -1,10 +1,18 @@
 {
     "name": "twitchchat",
-    "displayName": "twitchChat",
-    "description": "",
+    "displayName": "Twitch chat for VS Code",
+    "description": "View what's going on in chat while you're busy in the editor",
+    "keywords": [
+        "twitch",
+        "chat",
+        "twitch chat",
+        "live stream chat"
+    ],
+    "icon": "images/icon.png",
+    "repository": "https://github.com/tommerty/vscode-twitch-chat",
     "url": "https://github.com/tommerty/vscode-twitch-chat.git",
     "publisher": "tommerty",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "engines": {
         "vscode": "^1.89.0"
     },

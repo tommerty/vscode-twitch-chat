@@ -7,7 +7,12 @@ View what's going on in chat while you're busy in the editor
 -   Input any Twitch username
 -   See chat in real time
 
-![preview](twitch-chat.png)
+![preview](images/twitch-chat.png)
+
+## How to use
+1. Install the extension
+2. Open your VSCode settings and search for `twitchChatExtension.twitchUsername`, and input your Twitch username
+3. Open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and search for `Twitch Chat`
 
 ## Extension Settings
 
@@ -29,6 +34,13 @@ Initial release
 
 -   Setting for adding username
 -   Shows chat in real time
+
+### 1.0.1
+
+- Adding images
+- Updating the branding of the extension such as renaming and adding an image
+- Updated the `README` to show how to use the extension
+
 
 ---
 
