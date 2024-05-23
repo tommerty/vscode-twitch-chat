@@ -1,35 +1,24 @@
-# twitchchat README
+# Twitch chat for VS Code
 
-This is the README for your extension "twitchchat". After writing up a brief description, we recommend including the following sections.
+View what's going on in chat while you're busy in the editor
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Input any Twitch username
+- See chat in real time
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![preview](twitch-chat.png)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `twitchChatExtension.twitchUsername`: Sets the username of the channel you wish to show in the extension
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+* No badge/emote support
+
 
 ## Release Notes
 
@@ -37,35 +26,55 @@ Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release
+* Setting for adding username
+* Shows chat in real time
 
 ---
 
-## Following extension guidelines
+## Contribution Guidelines
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Thank you for your interest in contributing to the Twitch Chat Extension for Visual Studio Code! This was developed for my own needs, but I welcome contributions from the community to help improve and enhance the extension.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+To contribute to this project, please follow these guidelines:
 
-## Working with Markdown
+### Reporting Issues
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+If you encounter any bugs, have feature requests, or want to suggest improvements, please [open an issue](https://github.com/tommerty/vscode-twitch-chat/issues) on the GitHub repository. When reporting an issue, please provide the following information:
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+- A clear and descriptive title
+- Steps to reproduce the issue
+- Expected behavior and actual behavior
+- Screenshots or error messages, if applicable
+- Visual Studio Code version and extension version
 
-## For more information
+### Pull Requests
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+We welcome pull requests for bug fixes, new features, or improvements. To submit a pull request, please follow these steps:
 
-**Enjoy!**
+1. Fork the repository and create a new branch for your feature or bug fix.
+2. Ensure that your code adheres to the project's coding style and conventions.
+3. Write clear and concise commit messages.
+4. If your pull request addresses an existing issue, please reference the issue number in your commit message or pull request description.
+5. Make sure that your changes do not introduce any new errors or warnings.
+6. Test your changes thoroughly to ensure they work as expected.
+7. Submit the pull request, providing a detailed description of the changes made and the problem it solves.
+
+### Code Style
+
+Please follow these code style guidelines when contributing to the project:
+
+- Use meaningful variable and function names.
+- Write comments to explain complex logic or algorithms.
+- Maintain consistent indentation and formatting.
+- Avoid introducing new linting errors or warnings.
+
+### Testing
+
+Before submitting a pull request, make sure to test your changes thoroughly. If you added new features or made significant modifications, please include appropriate tests to ensure the stability and reliability of the extension.
+
+### Documentation
+
+If your contribution includes new features or changes existing functionality, please update the relevant documentation in the `README.md` file or any other appropriate documentation files.
+
+
