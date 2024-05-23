@@ -27,11 +27,11 @@ exports.deactivate = exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const TwitchChatPanel_1 = require("./TwitchChatPanel");
 function activate(context) {
-    context.subscriptions.push(vscode.commands.registerCommand('twitchChatExtension.showChat', () => {
+    context.subscriptions.push(vscode.commands.registerCommand("twitchChatExtension.showChat", () => {
         TwitchChatPanel_1.TwitchChatPanel.createOrShow();
     }));
-    vscode.workspace.onDidChangeConfiguration(e => {
-        if (e.affectsConfiguration('twitchChatExtension.twitchUsername')) {
+    vscode.workspace.onDidChangeConfiguration((e) => {
+        if (e.affectsConfiguration("twitchChatExtension.twitchUsername")) {
             if (TwitchChatPanel_1.TwitchChatPanel.currentPanel) {
                 TwitchChatPanel_1.TwitchChatPanel.currentPanel.dispose();
                 TwitchChatPanel_1.TwitchChatPanel.createOrShow();

@@ -40,34 +40,42 @@ class TwitchChatPanel {
         this._setupTmiClient();
     }
     static createOrShow() {
-        const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+        const column = vscode.window.activeTextEditor
+            ? vscode.window.activeTextEditor.viewColumn
+            : undefined;
         if (TwitchChatPanel.currentPanel) {
             TwitchChatPanel.currentPanel._panel.reveal(column);
         }
         else {
-            const panel = vscode.window.createWebviewPanel('twitchChat', 'Twitch Chat', column || vscode.ViewColumn.One, {
-                enableScripts: true
+            const panel = vscode.window.createWebviewPanel("twitchChat", "Twitch Chat", column || vscode.ViewColumn.One, {
+                enableScripts: true,
             });
             TwitchChatPanel.currentPanel = new TwitchChatPanel(panel);
         }
     }
     _setupTmiClient() {
-        const twitchUsername = vscode.workspace.getConfiguration('twitchChatExtension').get('twitchUsername', '');
+        const twitchUsername = vscode.workspace
+            .getConfiguration("twitchChatExtension")
+            .get("twitchUsername", "");
         if (twitchUsername) {
             const client = new tmi_js_1.default.Client({
-                channels: [twitchUsername]
+                channels: [twitchUsername],
             });
             client.connect();
-            client.on('message', (channel, tags, message, self) => {
-                this._panel.webview.postMessage({ type: 'chatMessage', message: { id: tags.id, user: tags.username, message } });
+            client.on("message", (channel, tags, message, self) => {
+                this._panel.webview.postMessage({
+                    type: "chatMessage",
+                    message: { id: tags.id, user: tags.username, message },
+                });
             });
         }
         else {
-            const openSettingsButton = 'Configure';
-            vscode.window.showErrorMessage('No channel set! Head over to the settings and type in the Twitch username', openSettingsButton)
+            const openSettingsButton = "Configure";
+            vscode.window
+                .showErrorMessage("No channel set! Head over to the settings and type in the Twitch username", openSettingsButton)
                 .then((selection) => {
                 if (selection === openSettingsButton) {
-                    vscode.commands.executeCommand('workbench.action.openSettings', 'twitchChatExtension.twitchUsername');
+                    vscode.commands.executeCommand("workbench.action.openSettings", "twitchChatExtension.twitchUsername");
                 }
             });
         }

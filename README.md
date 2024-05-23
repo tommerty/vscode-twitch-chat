@@ -4,8 +4,8 @@ View what's going on in chat while you're busy in the editor
 
 ## Features
 
-- Input any Twitch username
-- See chat in real time
+-   Input any Twitch username
+-   See chat in real time
 
 ![preview](twitch-chat.png)
 
@@ -13,12 +13,11 @@ View what's going on in chat while you're busy in the editor
 
 This extension contributes the following settings:
 
-* `twitchChatExtension.twitchUsername`: Sets the username of the channel you wish to show in the extension
+-   `twitchChatExtension.twitchUsername`: Sets the username of the channel you wish to show in the extension
 
 ## Known Issues
 
-* No badge/emote support
-
+-   No badge/emote support
 
 ## Release Notes
 
@@ -27,8 +26,9 @@ Users appreciate release notes as you update your extension.
 ### 1.0.0
 
 Initial release
-* Setting for adding username
-* Shows chat in real time
+
+-   Setting for adding username
+-   Shows chat in real time
 
 ---
 
@@ -42,11 +42,11 @@ To contribute to this project, please follow these guidelines:
 
 If you encounter any bugs, have feature requests, or want to suggest improvements, please [open an issue](https://github.com/tommerty/vscode-twitch-chat/issues) on the GitHub repository. When reporting an issue, please provide the following information:
 
-- A clear and descriptive title
-- Steps to reproduce the issue
-- Expected behavior and actual behavior
-- Screenshots or error messages, if applicable
-- Visual Studio Code version and extension version
+-   A clear and descriptive title
+-   Steps to reproduce the issue
+-   Expected behavior and actual behavior
+-   Screenshots or error messages, if applicable
+-   Visual Studio Code version and extension version
 
 ### Pull Requests
 
@@ -64,10 +64,10 @@ We welcome pull requests for bug fixes, new features, or improvements. To submit
 
 Please follow these code style guidelines when contributing to the project:
 
-- Use meaningful variable and function names.
-- Write comments to explain complex logic or algorithms.
-- Maintain consistent indentation and formatting.
-- Avoid introducing new linting errors or warnings.
+-   Use meaningful variable and function names.
+-   Write comments to explain complex logic or algorithms.
+-   Maintain consistent indentation and formatting.
+-   Avoid introducing new linting errors or warnings.
 
 ### Testing
 
@@ -76,5 +76,3 @@ Before submitting a pull request, make sure to test your changes thoroughly. If 
 ### Documentation
 
 If your contribution includes new features or changes existing functionality, please update the relevant documentation in the `README.md` file or any other appropriate documentation files.
-
-

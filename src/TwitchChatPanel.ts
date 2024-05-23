@@ -1,67 +1,81 @@
-import * as vscode from 'vscode';
-import tmi from 'tmi.js';
+import * as vscode from "vscode";
+import tmi from "tmi.js";
 
 export class TwitchChatPanel {
-  public static currentPanel: TwitchChatPanel | undefined;
+    public static currentPanel: TwitchChatPanel | undefined;
 
-  private readonly _panel: vscode.WebviewPanel;
-  private _disposables: vscode.Disposable[] = [];
+    private readonly _panel: vscode.WebviewPanel;
+    private _disposables: vscode.Disposable[] = [];
 
-  private constructor(panel: vscode.WebviewPanel) {
-    this._panel = panel;
+    private constructor(panel: vscode.WebviewPanel) {
+        this._panel = panel;
 
-    this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
+        this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
-    this._panel.webview.html = this._getWebviewContent();
+        this._panel.webview.html = this._getWebviewContent();
 
-    this._setupTmiClient();
-  }
+        this._setupTmiClient();
+    }
 
-  public static createOrShow() {
-    const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+    public static createOrShow() {
+        const column = vscode.window.activeTextEditor
+            ? vscode.window.activeTextEditor.viewColumn
+            : undefined;
 
-    if (TwitchChatPanel.currentPanel) {
-      TwitchChatPanel.currentPanel._panel.reveal(column);
-    } else {
-      const panel = vscode.window.createWebviewPanel(
-        'twitchChat',
-        'Twitch Chat',
-        column || vscode.ViewColumn.One,
-        {
-          enableScripts: true
+        if (TwitchChatPanel.currentPanel) {
+            TwitchChatPanel.currentPanel._panel.reveal(column);
+        } else {
+            const panel = vscode.window.createWebviewPanel(
+                "twitchChat",
+                "Twitch Chat",
+                column || vscode.ViewColumn.One,
+                {
+                    enableScripts: true,
+                }
+            );
+
+            TwitchChatPanel.currentPanel = new TwitchChatPanel(panel);
         }
-      );
-
-      TwitchChatPanel.currentPanel = new TwitchChatPanel(panel);
     }
-  }
 
-  private _setupTmiClient() {
-    const twitchUsername = vscode.workspace.getConfiguration('twitchChatExtension').get('twitchUsername', '');
-  
-    if (twitchUsername) {
-      const client = new tmi.Client({
-        channels: [twitchUsername]
-      });
-  
-      client.connect();
-  
-      client.on('message', (channel, tags, message, self) => {
-        this._panel.webview.postMessage({ type: 'chatMessage', message: { id: tags.id, user: tags.username, message } });
-      });
-    } else {
-      const openSettingsButton = 'Configure';
-      vscode.window.showErrorMessage('No channel set! Head over to the settings and type in the Twitch username', openSettingsButton)
-        .then((selection) => {
-          if (selection === openSettingsButton) {
-            vscode.commands.executeCommand('workbench.action.openSettings', 'twitchChatExtension.twitchUsername');
-          }
-        });
+    private _setupTmiClient() {
+        const twitchUsername = vscode.workspace
+            .getConfiguration("twitchChatExtension")
+            .get("twitchUsername", "");
+
+        if (twitchUsername) {
+            const client = new tmi.Client({
+                channels: [twitchUsername],
+            });
+
+            client.connect();
+
+            client.on("message", (channel, tags, message, self) => {
+                this._panel.webview.postMessage({
+                    type: "chatMessage",
+                    message: { id: tags.id, user: tags.username, message },
+                });
+            });
+        } else {
+            const openSettingsButton = "Configure";
+            vscode.window
+                .showErrorMessage(
+                    "No channel set! Head over to the settings and type in the Twitch username",
+                    openSettingsButton
+                )
+                .then((selection) => {
+                    if (selection === openSettingsButton) {
+                        vscode.commands.executeCommand(
+                            "workbench.action.openSettings",
+                            "twitchChatExtension.twitchUsername"
+                        );
+                    }
+                });
+        }
     }
-  }
 
-  private _getWebviewContent() {
-    return `<!DOCTYPE html>
+    private _getWebviewContent() {
+        return `<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -111,20 +125,18 @@ export class TwitchChatPanel {
                 </script>
             </body>
             </html>`;
-  }
-  
-  
-
-  public dispose() {
-    TwitchChatPanel.currentPanel = undefined;
-
-    this._panel.dispose();
-
-    while (this._disposables.length) {
-      const x = this._disposables.pop();
-      if (x) {
-        x.dispose();
-      }
     }
-  }
+
+    public dispose() {
+        TwitchChatPanel.currentPanel = undefined;
+
+        this._panel.dispose();
+
+        while (this._disposables.length) {
+            const x = this._disposables.pop();
+            if (x) {
+                x.dispose();
+            }
+        }
+    }
 }

@@ -1,58 +1,58 @@
 {
-  "name": "twitchchat",
-  "displayName": "twitchChat",
-  "description": "",
-  "url": "https://github.com/tommerty/vscode-twitch-chat.git",
-  "publisher": "tommerty",
-  "version": "1.0.0",
-  "engines": {
-    "vscode": "^1.89.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "twitchChatExtension.showChat",
-        "title": "Show Twitch Chat"
-      }
+    "name": "twitchchat",
+    "displayName": "twitchChat",
+    "description": "",
+    "url": "https://github.com/tommerty/vscode-twitch-chat.git",
+    "publisher": "tommerty",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.89.0"
+    },
+    "categories": [
+        "Other"
     ],
-    "configuration": {
-      "title": "Twitch Chat",
-      "properties": {
-        "twitchChatExtension.twitchUsername": {
-          "type": "string",
-          "default": "",
-          "description": "Enter the Twitch username of the channel you want to join."
-                    
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "twitchChatExtension.showChat",
+                "title": "Show Twitch Chat"
+            }
+        ],
+        "configuration": {
+            "title": "Twitch Chat",
+            "properties": {
+                "twitchChatExtension.twitchUsername": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Enter the Twitch username of the channel you want to join."
+                }
+            }
         }
-      }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.6",
+        "@types/node": "18.x",
+        "@types/vscode": "^1.89.0",
+        "@typescript-eslint/eslint-plugin": "^7.7.1",
+        "@typescript-eslint/parser": "^7.7.1",
+        "@vscode/test-cli": "^0.0.9",
+        "@vscode/test-electron": "^2.3.9",
+        "eslint": "^8.57.0",
+        "prettier": "3.2.5",
+        "typescript": "^5.4.5"
+    },
+    "dependencies": {
+        "@types/tmi.js": "^1.8.6",
+        "tmi.js": "^1.8.5"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "@types/vscode": "^1.89.0",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
-    "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.3.9",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "@types/tmi.js": "^1.8.6",
-    "tmi.js": "^1.8.5"
-  }
 }
