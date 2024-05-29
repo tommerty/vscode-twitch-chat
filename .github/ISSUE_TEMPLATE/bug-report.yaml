@@ -1,0 +1,29 @@
+name: Bug Report
+description: Report a bug
+title: "[bug]: "
+labels: ["bug"]
+projects: ["tommerty/11"]
+assignees:
+  - tommerty
+body:
+- type: textarea
+  id: issue
+  attributes:
+    label: Description
+    description: "Explain in detail what you're experiencing"
+  validations:
+    required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+- type: checkboxes
+    id: terms
+    attributes:
+      label: Are you using the latest version of the extension, and is your VS Code up to date?
+      description: You can check this by going into the extensions panel and ensure there are no updates pending. For VS Code, you can check if your on the latest version by clicking the gear icon and click `check for updates`. 
+      options:
+        - label: I confirm I'm using the latest version of the extension and VS Code
+          required: true
