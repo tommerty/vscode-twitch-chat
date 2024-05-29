@@ -6,7 +6,7 @@ projects: ["tommerty/11"]
 assignees:
   - tommerty
 body:
-- type: textarea
+  - type: textarea
   id: issue
   attributes:
     label: Description
